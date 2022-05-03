@@ -11,36 +11,64 @@
 #include <vector>
 using namespace std;
 
+// class Solution
+//{
+//   public:
+//	bool isSubsequence(string s, string t)
+//	{
+//		if (s.length() == 0)
+//		{
+//			return true;
+//		}
+//
+//		int i = 0;
+//		int j = 0;
+//		while (t.length() - j >= s.length() - i)
+//		{
+//			if (s[i] == t[j])
+//			{
+//				i++;
+//				j++;
+//				if (i == s.length())
+//				{
+//					return true;
+//				}
+//			}
+//			else
+//			{
+//				j++;
+//			}
+//		}
+//		// cout << "i:" << i << endl;
+//		// cout << "j:" << j << endl;
+//		return false;
+//	}
+// };
+
 class Solution
 {
   public:
 	bool isSubsequence(string s, string t)
 	{
-		if (s.length() == 0)
+		int char_found;
+		int t_index = 0;
+		for (int i = 0; i < s.size(); i++)
 		{
-			return true;
-		}
-
-		int i = 0;
-		int j = 0;
-		while (t.length() - j >= s.length() - i)
-		{
-			if (s[i] == t[j])
+			char_found = 0;
+			for (int j = t_index; j < t.size(); j++)
 			{
-				i++;
-				j++;
-				if (i == s.length())
+				if (s[i] == t[j])
 				{
-					return true;
+					t_index = j + 1;
+					char_found = 1;
+					break;
 				}
 			}
-			else
+			if (!char_found)
 			{
-				j++;
+				return false;
 			}
 		}
-		// cout << "i:" << i << endl;
-		// cout << "j:" << j << endl;
-		return false;
+		return true;
 	}
 };
